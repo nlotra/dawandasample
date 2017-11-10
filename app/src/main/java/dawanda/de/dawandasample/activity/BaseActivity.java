@@ -1,19 +1,16 @@
 package dawanda.de.dawandasample.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Optional;
 import dagger.android.AndroidInjection;
 import dawanda.de.dawandasample.R;
-
-import static java.net.Proxy.Type.HTTP;
 
 /**
  * Created by natashalotra on 2017/11/06.
@@ -48,8 +45,21 @@ public class BaseActivity extends AppCompatActivity {
         // Handle default toolbar for all activities here (if present)
         if (mToolbar != null) {
             mToolbar.setTitle("");
+            mToolbar.setContentInsetStartWithNavigation(0);
+            mToolbar.setTitleMarginStart((int) getResources().getDimension(R.dimen.padding_normal));
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // handle back button navigation by default
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

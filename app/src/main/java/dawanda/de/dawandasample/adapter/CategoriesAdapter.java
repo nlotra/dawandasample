@@ -13,7 +13,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dawanda.de.dawandasample.Constants;
 import dawanda.de.dawandasample.R;
+import dawanda.de.dawandasample.listener.OnItemSelectedListener;
 import dawanda.de.dawandasample.model.Category;
 
 /**
@@ -22,6 +24,7 @@ import dawanda.de.dawandasample.model.Category;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder> {
     List<Category> mCategories;
+    OnItemSelectedListener mListener;
 
     @Override
     public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -34,13 +37,23 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         Category category = mCategories.get(position);
         holder.categoryTitle.setText(category.getName());
         Glide.with(holder.categoryImage.getContext())
-                .load("https:" + category.getImageUrl())
+                .load(Constants.HTTPS_URL_PREFIX + category.getImageUrl())
                 .into(holder.categoryImage);
+        holder.categoryImage.setOnClickListener((view) -> mListener.onItemSelected(category));
     }
 
     @Override
     public int getItemCount() {
         return mCategories == null ? 0 : mCategories.size();
+    }
+
+    public void setCategories(List<Category> categories) {
+        mCategories = categories;
+        notifyDataSetChanged();
+    }
+
+    public void setOnItemSelectedListener(OnItemSelectedListener listener) {
+        this.mListener = listener;
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder {
@@ -54,10 +67,5 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-    }
-
-    public void setCategories(List<Category> categories) {
-        mCategories = categories;
-        notifyDataSetChanged();
     }
 }

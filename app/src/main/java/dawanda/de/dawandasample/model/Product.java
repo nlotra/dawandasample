@@ -24,6 +24,9 @@ public class Product implements Serializable {
     @SerializedName("shop")
     private Shop shop;
 
+    @SerializedName("default_image")
+    private DefaultImage defaultImage;
+
     public long getId() {
         return id;
     }
@@ -62,5 +65,13 @@ public class Product implements Serializable {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public DefaultImage getDefaultImage() {
+        return defaultImage;
+    }
+
+    public void setDefaultImage(DefaultImage defaultImage) {
+        this.defaultImage = defaultImage;
     }
 }

@@ -16,7 +16,7 @@
         <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="logo">@drawable/ic_dawanda</item>
         <item name="theme">@style/AppTheme.Toolbar</item>
-        <item name="popupTheme">@style/ThemeOverlay.VoxTheme.Toolbar.Popup</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppTheme.Toolbar.Popup</item>
     </style>
 
     <!--Toolbar theme seems to need dark actionbar theme-->
@@ -29,7 +29,7 @@
     </style>
 
     <!--Overflow menu-->
-    <style name="ThemeOverlay.VoxTheme.Toolbar.Popup" parent="ThemeOverlay.AppCompat">
+    <style name="ThemeOverlay.AppTheme.Toolbar.Popup" parent="ThemeOverlay.AppCompat">
         <item name="android:colorBackground">@android:color/white</item>
         <item name="actionMenuTextColor">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>

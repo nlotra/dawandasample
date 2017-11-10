@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_dawanda_tag"
+        android:top="@dimen/padding_xxsmall"
+        android:bottom="@dimen/padding_xxsmall"
+        android:left="@dimen/padding_xxsmall"
+        android:right="@dimen/padding_xxsmall"/>
+</layer-list>
