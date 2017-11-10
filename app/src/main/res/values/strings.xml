@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">DaWandaSample</string>
 
+    <string name="title_product_details">Product Details</string>
+
+    <string name="action_share">Share</string>
+
     <string name="price_format">%1s %2s%.2f</string>
+
+    <string name="share_format">Check out %1s on Dawanda \nhttps://de.dawanda.com/product/%2s-%3s</string>
 </resources>

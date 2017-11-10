@@ -1,7 +1,5 @@
 package dawanda.de.dawandasample.di;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import dawanda.de.dawandasample.Constants;
@@ -22,7 +20,7 @@ public class DaWandaModule {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(Constants.BASE_API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
 

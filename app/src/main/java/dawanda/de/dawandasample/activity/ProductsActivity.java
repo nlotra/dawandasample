@@ -1,5 +1,6 @@
 package dawanda.de.dawandasample.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +18,7 @@ import butterknife.BindView;
 import dawanda.de.dawandasample.R;
 import dawanda.de.dawandasample.adapter.ProductsAdapter;
 import dawanda.de.dawandasample.model.Category;
+import dawanda.de.dawandasample.model.Product;
 import dawanda.de.dawandasample.network.NetworkManager;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -66,6 +68,10 @@ public class ProductsActivity extends BaseActivity {
     public void init() {
         Log.d("ProductsActivity", "init");
         mAdapter = new ProductsAdapter();
+        mAdapter.setOnItemSelectedListener((item -> {
+            if (item instanceof Product)
+                showProductDetailActivity((Product) item);
+        }));
         mRecyclerView.setAdapter(mAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.VERTICAL, false);
@@ -111,5 +117,12 @@ public class ProductsActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (mSubscriptions != null) mSubscriptions.dispose();
+    }
+
+    private void showProductDetailActivity(Product product) {
+        Intent intent = new Intent(this, ProductDetailActivity.class);
+        intent.putExtra(ProductDetailActivity.PRODUCT, product);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

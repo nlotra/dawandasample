@@ -12,6 +12,9 @@ public class Product implements Serializable {
     @SerializedName("id")
     private long id;
 
+    @SerializedName("slug")
+    private String slug;
+
     @SerializedName("title")
     private String title;
 
@@ -24,6 +27,9 @@ public class Product implements Serializable {
     @SerializedName("shop")
     private Shop shop;
 
+    @SerializedName("seller")
+    private Seller seller;
+
     @SerializedName("default_image")
     private DefaultImage defaultImage;
 
@@ -33,6 +39,14 @@ public class Product implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getTitle() {
@@ -65,6 +79,14 @@ public class Product implements Serializable {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
 
     public DefaultImage getDefaultImage() {

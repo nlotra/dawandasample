@@ -46,7 +46,6 @@ public class BaseActivity extends AppCompatActivity {
         if (mToolbar != null) {
             mToolbar.setTitle("");
             mToolbar.setContentInsetStartWithNavigation(0);
-            mToolbar.setTitleMarginStart((int) getResources().getDimension(R.dimen.padding_normal));
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }

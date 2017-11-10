@@ -2,16 +2,16 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/category_container"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:focusable="true"
+    android:clickable="true">
 
     <FrameLayout
-        android:id="@+id/category_container"
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        android:focusable="true"
-        android:clickable="true">
+        android:layout_height="wrap_content">
 
         <!--Imageview housed in framelayout for muted overlay-->
         <FrameLayout

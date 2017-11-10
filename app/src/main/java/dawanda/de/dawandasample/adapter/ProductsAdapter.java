@@ -15,8 +15,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dawanda.de.dawandasample.Constants;
 import dawanda.de.dawandasample.R;
+import dawanda.de.dawandasample.listener.OnItemSelectedListener;
 import dawanda.de.dawandasample.model.Price;
 import dawanda.de.dawandasample.model.Product;
 
@@ -26,6 +28,7 @@ import dawanda.de.dawandasample.model.Product;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHolder> {
     List<Product> mProducts;
+    OnItemSelectedListener mListener;
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,6 +39,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         Product product = mProducts.get(position);
+        holder.product = product;
+
         Context context = holder.productImage.getContext();
 
         if (product.getDefaultImage() != null) {
@@ -68,7 +73,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         return mProducts == null ? 0 : mProducts.size();
     }
 
-    public class ProductViewHolder extends RecyclerView.ViewHolder{
+    public class ProductViewHolder extends RecyclerView.ViewHolder {
+        Product product;
+
         @BindView(R.id.product_image)
         ImageView productImage;
 
@@ -81,10 +88,20 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         @BindView(R.id.product_badge)
         TextView productBadge;
 
+        @OnClick(R.id.product_container)
+        public void onClick() {
+            if (mListener == null) return;
+            mListener.onItemSelected(product);
+        }
+
         public ProductViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public void setOnItemSelectedListener(OnItemSelectedListener listener) {
+        this.mListener = listener;
     }
 
     public void setProducts(List<Product> products) {

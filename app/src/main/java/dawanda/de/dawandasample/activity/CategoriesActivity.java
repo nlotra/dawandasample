@@ -53,6 +53,7 @@ public class CategoriesActivity extends BaseActivity {
         mSubscriptions = new CompositeDisposable();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setLogo(R.drawable.ic_dawanda_tag_toolbar);
         init();
     }
 
@@ -101,6 +102,7 @@ public class CategoriesActivity extends BaseActivity {
         Intent intent = new Intent(this, ProductsActivity.class);
         intent.putExtra(ProductsActivity.CATEGORY, category);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override
