@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/ic_dawanda"
+    <item android:drawable="@drawable/ic_dawanda_tag_large"
         android:top="@dimen/padding_normal"
         android:bottom="@dimen/padding_normal"
         android:left="@dimen/padding_normal"
