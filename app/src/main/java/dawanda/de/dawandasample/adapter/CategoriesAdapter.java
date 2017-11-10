@@ -13,6 +13,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dawanda.de.dawandasample.Constants;
 import dawanda.de.dawandasample.R;
 import dawanda.de.dawandasample.listener.OnItemSelectedListener;
@@ -35,11 +36,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         Category category = mCategories.get(position);
+        holder.category = category;
         holder.categoryTitle.setText(category.getName());
         Glide.with(holder.categoryImage.getContext())
                 .load(Constants.HTTPS_URL_PREFIX + category.getImageUrl())
                 .into(holder.categoryImage);
-        holder.categoryImage.setOnClickListener((view) -> mListener.onItemSelected(category));
     }
 
     @Override
@@ -57,11 +58,19 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder {
+        Category category;
+
         @BindView(R.id.category_image)
         ImageView categoryImage;
 
         @BindView(R.id.category_title)
         TextView categoryTitle;
+
+        @OnClick(R.id.category_container)
+        public void onClick() {
+            if (mListener == null) return;
+            mListener.onItemSelected(category);
+        }
 
         public CategoryViewHolder(View itemView) {
             super(itemView);
