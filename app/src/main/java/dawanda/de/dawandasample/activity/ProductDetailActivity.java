@@ -17,7 +17,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import dawanda.de.dawandasample.Constants;
 import dawanda.de.dawandasample.R;
-import dawanda.de.dawandasample.model.Category;
 import dawanda.de.dawandasample.model.Price;
 import dawanda.de.dawandasample.model.Product;
 
@@ -142,7 +141,7 @@ public class ProductDetailActivity extends BaseActivity {
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, mProduct.getTitle());
         shareIntent.putExtra(Intent.EXTRA_TEXT, String.format(getString(R.string.share_format),
                 mProduct.getTitle(),
-                mProduct.getId(),
+                String.valueOf(mProduct.getId()),
                 mProduct.getSlug()));
 
         startActivity(shareIntent);
