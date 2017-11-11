@@ -21,7 +21,7 @@ import dawanda.de.dawandasample.model.Price;
 import dawanda.de.dawandasample.model.Product;
 
 /**
- * Created by natashalotra on 2017/11/10.
+ * Display details of a given product
  */
 
 public class ProductDetailActivity extends BaseActivity {
@@ -51,7 +51,9 @@ public class ProductDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        getSupportActionBar().setTitle(R.string.title_product_details);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.title_product_details);
+        }
 
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().containsKey(PRODUCT)) {
@@ -67,7 +69,6 @@ public class ProductDetailActivity extends BaseActivity {
     }
 
     private void init() {
-        Log.d("ProductDetailActivity", "init");
         if (mProduct.getDefaultImage() != null) {
             RequestOptions requestOptions = new RequestOptions()
                     .placeholder(R.drawable.bg_placeholder)
@@ -105,6 +106,7 @@ public class ProductDetailActivity extends BaseActivity {
         outState.putSerializable(PRODUCT, mProduct);
     }
 
+    // setup toolbar menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.clear();

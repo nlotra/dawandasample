@@ -11,7 +11,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 import dawanda.de.dawandasample.DaWandaApplication;
 
 /**
- * Created by natashalotra on 2017/11/06.
+ * Main application dagger component
  */
 
 @Singleton

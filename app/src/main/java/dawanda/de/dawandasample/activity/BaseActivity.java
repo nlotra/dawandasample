@@ -1,5 +1,6 @@
 package dawanda.de.dawandasample.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +14,11 @@ import dagger.android.AndroidInjection;
 import dawanda.de.dawandasample.R;
 
 /**
- * Created by natashalotra on 2017/11/06.
+ * Superclass for activities in the app
+ * Handles some things by default such as toolbar, butterknife and dagger setup
  */
 
+@SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
     @Nullable
     @BindView(R.id.toolbar)

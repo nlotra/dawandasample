@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
@@ -28,7 +31,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by natashalotra on 2017/11/06.
+ * Display a list of categories
  */
 
 public class CategoriesActivity extends BaseActivity {
@@ -37,6 +40,9 @@ public class CategoriesActivity extends BaseActivity {
 
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.error_message)
+    TextView mErrorMessage;
 
     CategoriesAdapter mAdapter;
 
@@ -49,16 +55,19 @@ public class CategoriesActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclerview);
+        getWindow().getDecorView().setBackground(ContextCompat.getDrawable(getBaseContext(), R.drawable.bg_gradient));
 
         mSubscriptions = new CompositeDisposable();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setLogo(R.drawable.ic_dawanda_tag_toolbar);
+        // override default toolbar behaviour for main activity
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setLogo(R.drawable.ic_dawanda_tag_toolbar);
+        }
         init();
     }
 
     public void init() {
-        Log.d("CategoriesActivity", "init");
         mAdapter = new CategoriesAdapter();
         mAdapter.setOnItemSelectedListener((item) -> {
             if (item instanceof Category)
@@ -80,6 +89,9 @@ public class CategoriesActivity extends BaseActivity {
     }
 
     private void loadCategories() {
+        mErrorMessage.setVisibility(View.GONE);
+        mAdapter.setCategories(null);
+
         setRefreshing(true);
         mSubscriptions.add(mNetworkManager.getCategories()
                 .subscribeOn(Schedulers.newThread())
@@ -89,6 +101,7 @@ public class CategoriesActivity extends BaseActivity {
                         (throwable) -> {
                             if (throwable instanceof IOException) {
                                 // network error
+                                mErrorMessage.setVisibility(View.VISIBLE);
                             }
                         }
                 ));

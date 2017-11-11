@@ -22,7 +22,7 @@ import dawanda.de.dawandasample.R;
 import dawanda.de.dawandasample.model.Product;
 
 /**
- * Created by natashalotra on 2017/11/10.
+ * Display a given image with options to pan and zoom
  */
 
 public class ViewImageActivity extends BaseActivity {
@@ -58,7 +58,9 @@ public class ViewImageActivity extends BaseActivity {
             finish();
             return;
         }
-        getSupportActionBar().setTitle(mProduct.getTitle());
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(mProduct.getTitle());
+        }
 
         mImageViewer.setProgressIndicator(new ProgressPieIndicator());
         mImageViewer.showImage(Uri.parse(Constants.HTTPS_URL_PREFIX + mProduct.getDefaultImage().getProductL()));
@@ -66,6 +68,8 @@ public class ViewImageActivity extends BaseActivity {
 
     @OnClick(R.id.big_image)
     public void onImageClick() {
+        if (getSupportActionBar() == null) return;
+
         if (getSupportActionBar().isShowing()) {
             getSupportActionBar().hide();
         } else {

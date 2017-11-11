@@ -22,13 +22,9 @@ import dawanda.de.dawandasample.listener.OnItemSelectedListener;
 import dawanda.de.dawandasample.model.Price;
 import dawanda.de.dawandasample.model.Product;
 
-/**
- * Created by natashalotra on 2017/11/10.
- */
-
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHolder> {
-    List<Product> mProducts;
-    OnItemSelectedListener mListener;
+    private List<Product> mProducts;
+    private OnItemSelectedListener mListener;
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

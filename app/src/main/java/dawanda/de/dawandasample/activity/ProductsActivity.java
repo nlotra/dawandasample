@@ -9,6 +9,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -25,7 +27,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by natashalotra on 2017/11/10.
+ * Display list of products in a given category
  */
 
 public class ProductsActivity extends BaseActivity {
@@ -37,6 +39,9 @@ public class ProductsActivity extends BaseActivity {
 
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.error_message)
+    TextView mErrorMessage;
 
     ProductsAdapter mAdapter;
 
@@ -58,6 +63,9 @@ public class ProductsActivity extends BaseActivity {
             if (savedInstanceState.containsKey(CATEGORY)) {
                 mCategory = (Category) savedInstanceState.getSerializable(CATEGORY);
             }
+        }
+        if (getSupportActionBar() != null && mCategory != null) {
+            getSupportActionBar().setTitle(mCategory.getName());
         }
 
         mSubscriptions = new CompositeDisposable();
@@ -88,7 +96,10 @@ public class ProductsActivity extends BaseActivity {
 
     private void loadProducts() {
         if (mCategory == null) return;
-        getSupportActionBar().setTitle(mCategory.getName());
+
+        mErrorMessage.setVisibility(View.GONE);
+        mAdapter.setProducts(null);
+
         setRefreshing(true);
         mSubscriptions.add(mNetworkManager.getProducts(mCategory.getId())
                 .subscribeOn(Schedulers.newThread())
@@ -97,7 +108,7 @@ public class ProductsActivity extends BaseActivity {
                 .subscribe((products) -> mAdapter.setProducts(products),
                         (throwable) -> {
                             if (throwable instanceof IOException) {
-                                // network error
+                                mErrorMessage.setVisibility(View.VISIBLE);
                             }
                         }
                 ));

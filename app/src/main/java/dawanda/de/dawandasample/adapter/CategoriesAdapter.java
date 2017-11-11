@@ -19,13 +19,9 @@ import dawanda.de.dawandasample.R;
 import dawanda.de.dawandasample.listener.OnItemSelectedListener;
 import dawanda.de.dawandasample.model.Category;
 
-/**
- * Created by natashalotra on 2017/11/09.
- */
-
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder> {
-    List<Category> mCategories;
-    OnItemSelectedListener mListener;
+    private List<Category> mCategories;
+    private OnItemSelectedListener mListener;
 
     @Override
     public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -3,6 +3,8 @@
     <color name="dawanda_red">#CC1212</color>
     <color name="dawanda_red_dark">#ad0f0f</color>
     <color name="image_overlay">#66C0C0C0</color>
+    <color name="background_blue">#e8eaf6</color>
+    <color name="background_pink">#ffebee</color>
 
     <color name="colorPrimary">@color/dawanda_red</color>
     <color name="colorPrimaryDark">@color/dawanda_red_dark</color>

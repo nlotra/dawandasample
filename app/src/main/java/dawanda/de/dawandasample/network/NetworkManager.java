@@ -9,10 +9,6 @@ import dawanda.de.dawandasample.model.Category;
 import dawanda.de.dawandasample.model.Product;
 import io.reactivex.Observable;
 
-/**
- * Created by natashalotra on 2017/11/06.
- */
-
 @Singleton
 public class NetworkManager {
     private DaWandaService mDaWandaService;

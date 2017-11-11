@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 /**
- * Created by natashalotra on 2017/11/06.
+ * Retrofit interface
  */
 
 public interface DaWandaService {

@@ -8,4 +8,6 @@
     <string name="price_format">%1s %2s%.2f</string>
 
     <string name="share_format">Check out %1s on Dawanda \nhttps://de.dawanda.com/product/%2s-%3s</string>
+
+    <string name="message_network_error">Unable to connect to DaWanda\nPlease check your network connection and refresh or come back later.</string>
 </resources>

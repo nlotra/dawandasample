@@ -4,10 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-/**
- * Created by natashalotra on 2017/11/06.
- */
-
 public class Product implements Serializable {
     @SerializedName("id")
     private long id;

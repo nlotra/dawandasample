@@ -10,10 +10,6 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dawanda.de.dawandasample.di.DaggerDaWandaComponent;
 
-/**
- * Created by natashalotra on 2017/11/06.
- */
-
 public class DaWandaApplication extends Application implements HasActivityInjector {
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
