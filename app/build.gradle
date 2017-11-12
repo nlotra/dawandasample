@@ -6,6 +6,15 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
+
+    signingConfigs {
+        release {
+            storeFile file('../dawanda')
+            storePassword "d4w4nd4"
+            keyAlias "dawandakey"
+            keyPassword "d4w4nda"
+        }
+    }
     defaultConfig {
         applicationId "dawanda.de.dawandasample"
         minSdkVersion 16
